@@ -5,9 +5,12 @@ class Country < ActiveRecord::Base
   
   before_save :uppercase_country_code, if: Proc.new { |c| c.country_code_changed? && c.country_code.present? }
   
+  belongs_to :panel_provider
+  
   private
   
     def uppercase_country_code
       self.country_code = self.country_code.upcase
     end
+    
 end
