@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024152307) do
+ActiveRecord::Schema.define(version: 20171024155409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20171024152307) do
 
   create_table "location_groups", force: :cascade do |t|
     t.string   "name",              default: "", null: false
-    t.integer  "country_id",                     null: false
-    t.integer  "panel_provider_id",              null: false
+    t.integer  "country_id"
+    t.integer  "panel_provider_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
@@ -51,5 +51,19 @@ ActiveRecord::Schema.define(version: 20171024152307) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "target_groups", force: :cascade do |t|
+    t.string   "name",              default: "", null: false
+    t.integer  "external_id"
+    t.integer  "parent_id"
+    t.string   "secret_code"
+    t.integer  "panel_provider_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "target_groups", ["external_id"], name: "index_target_groups_on_external_id", using: :btree
+  add_index "target_groups", ["panel_provider_id"], name: "index_target_groups_on_panel_provider_id", using: :btree
+  add_index "target_groups", ["parent_id"], name: "index_target_groups_on_parent_id", using: :btree
 
 end
