@@ -31,6 +31,8 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
+load "#{Rails.root}/db/seeds.rb"
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
