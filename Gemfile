@@ -44,5 +44,6 @@ group :test do
   gem 'factory_girl_rails', '~> 4.8'
   gem 'webmock', '~> 3.1'
   gem 'vcr', '~> 3.0', '>= 3.0.3'
+  gem 'timecop', '~> 0.9.1'
 end
 
