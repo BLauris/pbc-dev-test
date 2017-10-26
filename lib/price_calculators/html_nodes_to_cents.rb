@@ -4,11 +4,9 @@ class HtmlNodesToCents < Base::ToCents
   attribute :url, String, default: "http://time.com/"
   
   def count!
-    begin
-      count = total_count
-    rescue => error
-      add_error(error)
-    end
+    count = total_count
+  rescue => error
+    add_error(error)
   end
   
   private

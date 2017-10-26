@@ -5,11 +5,9 @@ class LettersToCents < Base::ToCents
   attribute :letters, String, default: "a"
   
   def count!
-    begin
-      count = letter_count
-    rescue => error
-      add_error(error)
-    end
+    count = letter_count
+  rescue => error
+    add_error(error)
   end
   
   private

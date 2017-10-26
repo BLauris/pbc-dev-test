@@ -6,12 +6,10 @@ class ArrayElementsToCents < Base::ToCents
   attribute :url, String, default: "http://openlibrary.org/search.json?q=the+lord+of+the+rings"
   
   def count!
-    begin
-      response_json.each { |data| deep_array_count(data) }
-      count
-    rescue => error
-      add_error(error)
-    end
+    response_json.each { |data| deep_array_count(data) }
+    count
+  rescue => error
+    add_error(error)
   end
   
   private 
