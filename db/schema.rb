@@ -47,9 +47,10 @@ ActiveRecord::Schema.define(version: 20171024155409) do
   add_index "locations", ["external_id"], name: "index_locations_on_external_id", using: :btree
 
   create_table "panel_providers", force: :cascade do |t|
-    t.string   "code",       default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "code",           default: "", null: false
+    t.integer  "price_in_cents",              null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "target_groups", force: :cascade do |t|
