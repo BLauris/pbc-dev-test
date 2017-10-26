@@ -21,6 +21,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'faker', '~> 1.8', '>= 1.8.4'
 gem 'virtus', '~> 1.0', '>= 1.0.5'
+gem 'nokogiri', '~> 1.8', '>= 1.8.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -40,5 +41,7 @@ group :test do
   gem 'database_cleaner', '~> 1.6', '>= 1.6.1'
   gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
   gem 'factory_girl_rails', '~> 4.8'
+  gem 'webmock', '~> 3.1'
+  gem 'vcr', '~> 3.0', '>= 3.0.3'
 end
 
