@@ -6,26 +6,37 @@ FIVE_RANDOM = ["Berin", "Paris", "Porto", "Milan", "Madrid"]
 
 ALL_CITIES = (LV_CITIES + GB_CITIES + US_CITIES + FIVE_RANDOM)
 
-puts "START"
+puts "----> START"
 
+User.destroy_all
 PanelProvider.destroy_all
 Country.destroy_all
 Location.destroy_all
 LocationGroup.destroy_all
 TargetGroup.destroy_all
 
-puts "<---- PanelProviders and Countrues ---->"
-3.times do 
-  panel_provider = PanelProvider.create(code: Faker::Code.ean)
-  country_code = (ISO_CODES - Country.pluck(:country_code)).last
-  
-  Country.create(
-    country_code: country_code,
-    panel_provider_id: panel_provider.id
-  )
-end
+puts "----> Users "
 
-puts "<---- Locations ---->"
+User.create(email: "bligzna.lauris@gmail.com")
+
+puts "----> PanelProviders and Countrues "
+
+arrays_to_cents = ArrayElementsToCents.new
+country_code = (ISO_CODES - Country.pluck(:country_code)).last
+panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: arrays_to_cents.count!)
+Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
+
+html_to_cents = HtmlNodesToCents.new
+country_code = (ISO_CODES - Country.pluck(:country_code)).last
+panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: html_to_cents.count!)
+Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
+
+letters_to_cents = LettersToCents.new
+country_code = (ISO_CODES - Country.pluck(:country_code)).last
+panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: letters_to_cents.count!)
+Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
+
+puts "----> Locations "
 
 ALL_CITIES.each do |city|
   Location.create(
@@ -34,7 +45,7 @@ ALL_CITIES.each do |city|
   )
 end
 
-puts "<---- Location Groups ---->"
+puts "----> Location Groups "
 
 ISO_CODES.each do |iso|
   country = Country.find_by(country_code: iso)
@@ -48,7 +59,7 @@ end
 
 LocationGroup.create(name: Faker::Name.title)
 
-puts "<---- Target Groups ---->"
+puts "----> Target Groups "
 
 def level_one_children(parent_id)
   3.times do
@@ -81,4 +92,4 @@ ISO_CODES.each do |iso|
   level_one_children(tg.id)
 end
 
-puts "<---- DONE ---->"
+puts "----> DONE "
