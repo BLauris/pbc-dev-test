@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::EvaluateTargetsController, type: :controller do
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
 
   before do
     TokenService.generate_token!(user.email)

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::TokensController, type: :controller do
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
   
   it "returns valid token" do
     get :generate, user: { email: user.email } 
