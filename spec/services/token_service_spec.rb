@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe TokenService do
   
-  let(:user) { FactoryGirl.create(:user) }
-  let(:non_existing_email) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
   
   
   it "should generate and save token to user" do
@@ -26,7 +25,7 @@ describe TokenService do
   it "successfully decodes token" do
     token = TokenService.generate_token!(user.email)
     
-    expect(TokenService.decode!(token)).to eq(true)
+    expect(TokenService.decode!(token)).to eq(user)
   end
   
   it "returns false when trying to decode random string" do

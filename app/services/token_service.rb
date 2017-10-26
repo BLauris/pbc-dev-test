@@ -10,9 +10,9 @@ class TokenService
   
   def self.decode!(token)
     decoded = JWT.decode(token, nil, false)
-    User.where(email: decoded.first["email"]).exists?
+    User.find_by(email: decoded.first["email"])
   rescue
-    false
+    nil
   end
   
   def generate!
