@@ -38,12 +38,14 @@ Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
 
 puts "----> Locations "
 
-ALL_CITIES.each do |city|
-  Location.create(
-    name: city,
-    secret_code: Faker::Code.isbn
-  )
-end
+latvia = Country.find_by(country_code: "LV")
+LV_CITIES.each{ |city| Location.create(name: city, country_id: latvia.id, secret_code: Faker::Code.isbn) }
+
+great_britain = Country.find_by(country_code: "GB")
+GB_CITIES.each{ |city| Location.create(name: city, country_id: great_britain.id, secret_code: Faker::Code.isbn) }
+
+united_states = Country.find_by(country_code: "US")
+GB_CITIES.each{ |city| Location.create(name: city, country_id: united_states.id, secret_code: Faker::Code.isbn) }
 
 puts "----> Location Groups "
 
