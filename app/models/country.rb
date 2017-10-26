@@ -6,6 +6,7 @@ class Country < ActiveRecord::Base
   before_save :uppercase_country_code, if: Proc.new { |c| c.country_code_changed? && c.country_code.present? }
   
   belongs_to :panel_provider
+  has_many :locations
   
   private
   
