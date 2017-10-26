@@ -4,7 +4,7 @@ class ApiController < ApplicationController
   
   private
     
-    def user_exceeded_rate_limit?
+    def rate_limit_exceeded?
       unless Api::TokenService.decode!(token)
         if Api::RateLimitService.exceeded?(ip)
           render json: {message: "Rate limit exceeded!"}, status: 429 
