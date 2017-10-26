@@ -5,15 +5,15 @@ class ApiController < ApplicationController
   private
     
     def rate_limit_exceeded?
-      unless Api::TokenService.decode!(token)
-        if Api::RateLimitService.exceeded?(ip)
+      unless TokenService.decode!(token)
+        if RateLimitService.exceeded?(ip)
           render json: {message: "Rate limit exceeded!"}, status: 429 
         end
       end
     end
     
     def authenticate_user!
-      unless Api::TokenService.decode!(token)
+      unless TokenService.decode!(token)
         render json: {message: "You need to be authorized!"}, status: 401 
       end
     end

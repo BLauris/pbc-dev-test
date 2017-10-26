@@ -1,4 +1,4 @@
-class Api::TokenService
+class TokenService
   
   include Virtus.model(strict: true)
   attribute :email, String

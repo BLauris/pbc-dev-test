@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::TokenService do
+describe TokenService do
   
   let(:user) { FactoryGirl.create(:user) }
   let(:non_existing_email) { FactoryGirl.create(:user) }
@@ -12,7 +12,7 @@ describe Api::TokenService do
     expect(user.token.present?).to eq(false) 
     expect(user.token_expires_at.present?).to eq(false) 
     
-    Api::TokenService.generate_token!(user.email)
+    TokenService.generate_token!(user.email)
     user.reload
     
     expect(user.token.present?).to eq(true) 
@@ -20,27 +20,26 @@ describe Api::TokenService do
   end
   
   it "returns nil for email that doesn't exist" do
-    expect(Api::TokenService.generate_token!("non_existing@example.com")).to eq(nil)
+    expect(TokenService.generate_token!("non_existing@example.com")).to eq(nil)
   end
   
   it "successfully decodes token" do
-    token = Api::TokenService.generate_token!(user.email)
+    token = TokenService.generate_token!(user.email)
     
-    expect(Api::TokenService.decode!(token)).to eq(true)
+    expect(TokenService.decode!(token)).to eq(true)
   end
   
-  it "returns error when trying to decode random string" do
-    decode = Api::TokenService.decode!("some_random_token")
-    expect(decode).to eq("Invalid token")
+  it "returns false when trying to decode random string" do
+    expect(TokenService.decode!("some_random_token")).to eq(false)
   end 
   
   it "returns error if token expired" do
-    # Api::TokenService.generate_token!(user.email)
+    # TokenService.generate_token!(user.email)
     # 
     # Timecop.travel(Time.now + 2.days) do
     #   user.reload
     #   
-    #   decode = Api::TokenService.decode!(user.token)
+    #   decode = TokenService.decode!(user.token)
     #   expect(decode[:message]).to eq("Token expired")
     # end
   end

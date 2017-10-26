@@ -1,7 +1,7 @@
 class Api::TokensController < ApiController
   
   def generate
-    token = Api::TokenService.generate_token!(user_params[:email])
+    token = TokenService.generate_token!(user_params[:email])
       
     if token.present?
       render json: { token: token }, status: 200

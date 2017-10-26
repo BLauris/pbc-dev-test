@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::TokenService do
+describe TokenService do
   
   let(:ip) { "192.168.1.100" }
   
@@ -12,8 +12,7 @@ describe Api::TokenService do
     exceeded = false
     
     until exceeded
-      exceeded = Api::RateLimitService.exceeded?(ip)
-      puts exceeded
+      exceeded = RateLimitService.exceeded?(ip)
     end
     
     expect(Rails.cache.read("user_ip_#{ip}_count")).to eq(5)

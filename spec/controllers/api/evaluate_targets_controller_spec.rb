@@ -5,7 +5,7 @@ RSpec.describe Api::EvaluateTargetsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
 
   before do
-    Api::TokenService.generate_token!(user.email)
+    TokenService.generate_token!(user.email)
     user.reload
   end
 

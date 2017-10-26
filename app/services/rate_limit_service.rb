@@ -1,4 +1,4 @@
-class Api::RateLimitService
+class RateLimitService
   
   include Virtus.model
   attribute :ip, String
