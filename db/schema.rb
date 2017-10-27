@@ -73,11 +73,11 @@ ActiveRecord::Schema.define(version: 20171026202241) do
   add_index "target_groups", ["rgt"], name: "index_target_groups_on_rgt", using: :btree
 
   create_table "user_panel_providers", force: :cascade do |t|
-    t.integer  "user_id",                       null: false
-    t.integer  "panel_provider_id",             null: false
-    t.integer  "active",            default: 0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "user_id",                           null: false
+    t.integer  "panel_provider_id",                 null: false
+    t.boolean  "active",            default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "users", force: :cascade do |t|

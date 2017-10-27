@@ -4,7 +4,6 @@ describe TokenService do
   
   let(:user) { FactoryGirl.create(:user, email: Faker::Internet.email) }
   
-  
   it "should generate and save token to user" do
     Timecop.freeze(DateTime.current.in_time_zone)
     
