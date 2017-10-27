@@ -16,7 +16,7 @@ if Rails.env == "test" || Rails.env == "development"
 
   puts "----> Users "
 
-  User.create(email: "bligzna.lauris@gmail.com")
+  User.create(email: "bligzna.lauris@gmail.com", balance_in_cents: 10000)
 
   puts "----> PanelProviders and Countrues "
 
