@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe LocationGroup, type: :model do
   
   let(:panel_provider) { FactoryGirl.create(:panel_provider) }
-  let(:country) { FactoryGirl.create(:country, panel_provider_id: panel_provider.id) }
+  let(:country) { FactoryGirl.create(:country, panel_provider_id: panel_provider.id, country_code: "RU") }
   let(:location_group) { LocationGroup.new }
   
   it "successfully add's 'country'" do
