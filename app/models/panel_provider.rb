@@ -5,6 +5,7 @@ class PanelProvider < ActiveRecord::Base
   
   has_many :countries
   has_many :location_groups
+  
   has_many :user_panel_providers
   has_many :users, through: :user_panel_providers
   
