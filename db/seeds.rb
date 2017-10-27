@@ -6,7 +6,7 @@ FIVE_RANDOM = ["Berin", "Paris", "Porto", "Milan", "Madrid"]
 
 ALL_CITIES = (LV_CITIES + GB_CITIES + US_CITIES + FIVE_RANDOM)
 
-puts "----> START"
+puts "----> START SEEDS"
 
 User.destroy_all
 PanelProvider.destroy_all
