@@ -1,5 +1,9 @@
 class LocationQuery < Base::CountryCodeQuery
   
+  def list
+    user.present? ? user_locations : all_locations
+  end
+  
   private
   
     def user_locations
