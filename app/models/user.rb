@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   
-  # TODO: add unique validation on email
   validates :email, presence: true
   validates_uniqueness_of :email
   

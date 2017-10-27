@@ -2,7 +2,7 @@ class ApiController < ApplicationController
   
   protect_from_forgery with: :null_session
     
-  helper_method :current_user, :country_exists?
+  helper_method :current_user
   
   private
     
