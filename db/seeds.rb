@@ -20,19 +20,26 @@ if Rails.env == "test" || Rails.env == "development"
 
   puts "----> PanelProviders and Countrues "
 
-  arrays_to_cents = ArrayElementsToCents.new
+  if Rails.env == "test"
+    arrays_to_cents = 100
+    html_to_cents = 200
+    letters_to_cents = 300
+  else
+    arrays_to_cents = ArrayElementsToCents.new.count!
+    html_to_cents = HtmlNodesToCents.new.count!
+    letters_to_cents = LettersToCents.new.count!
+  end
+  
   country_code = (ISO_CODES - Country.pluck(:country_code)).last
-  panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: arrays_to_cents.count!)
+  panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: arrays_to_cents)
   Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
 
-  html_to_cents = HtmlNodesToCents.new
   country_code = (ISO_CODES - Country.pluck(:country_code)).last
-  panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: html_to_cents.count!)
+  panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: html_to_cents)
   Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
 
-  letters_to_cents = LettersToCents.new
   country_code = (ISO_CODES - Country.pluck(:country_code)).last
-  panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: letters_to_cents.count!)
+  panel_provider = PanelProvider.create(code: Faker::Code.ean, price_in_cents: letters_to_cents)
   Country.create(country_code: country_code, panel_provider_id: panel_provider.id)
 
   puts "----> Locations "
