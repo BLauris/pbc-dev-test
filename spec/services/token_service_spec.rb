@@ -29,7 +29,7 @@ describe TokenService do
   end
   
   it "returns false when trying to decode random string" do
-    expect(TokenService.decode!("some_random_token")).to eq(false)
+    expect(TokenService.decode!("some_random_token")).to eq(nil)
   end 
   
   it "returns error if token expired" do
