@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe Location, type: :model do
   
   let(:location) { Location.new }
+  let(:country) { Country.last }
   
   it "successfully add's 'country'" do
     location.name = "Some random string"
+    location.country_id = country.id
     
     expect{
       location.save 
