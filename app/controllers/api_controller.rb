@@ -4,7 +4,7 @@ class ApiController < ApplicationController
   
   protect_from_forgery with: :null_session
     
-  helper_method :current_user
+  helper_method :current_user, :country_exists?
   
   private
     
@@ -24,6 +24,10 @@ class ApiController < ApplicationController
     
     def current_user
       TokenService.decode!(request.headers["token"])
+    end
+    
+    def country_exists?
+      Country.where(country_code: params[:country_code]).exists?
     end
   
 end
