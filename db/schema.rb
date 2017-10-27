@@ -58,16 +58,19 @@ ActiveRecord::Schema.define(version: 20171026202241) do
   create_table "target_groups", force: :cascade do |t|
     t.string   "name",              default: "", null: false
     t.integer  "external_id"
-    t.integer  "parent_id"
     t.string   "secret_code"
     t.integer  "panel_provider_id"
+    t.integer  "parent_id"
+    t.integer  "lft",                            null: false
+    t.integer  "rgt",                            null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
 
-  add_index "target_groups", ["external_id"], name: "index_target_groups_on_external_id", using: :btree
+  add_index "target_groups", ["lft"], name: "index_target_groups_on_lft", using: :btree
   add_index "target_groups", ["panel_provider_id"], name: "index_target_groups_on_panel_provider_id", using: :btree
   add_index "target_groups", ["parent_id"], name: "index_target_groups_on_parent_id", using: :btree
+  add_index "target_groups", ["rgt"], name: "index_target_groups_on_rgt", using: :btree
 
   create_table "user_panel_providers", force: :cascade do |t|
     t.integer  "user_id",                       null: false
