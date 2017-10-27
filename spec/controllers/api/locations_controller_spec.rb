@@ -20,7 +20,7 @@ RSpec.describe Api::LocationsController, type: :controller do
     body = JSON.parse(response.body)
     
     expect(response.code).to eq("404")
-    expect(body["message"]).to eq("Location with country code XX not found")
+    expect(body["message"]).to eq("Country with country code XX not found")
   end
   
   context "Current User" do
