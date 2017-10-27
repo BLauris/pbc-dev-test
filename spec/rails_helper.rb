@@ -31,6 +31,8 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
+# NOTE: Usually I would not seed this for tests. In a normal case, I would write
+# factories for specific tests case. This is due to lack of time. 
 load "#{Rails.root}/db/seeds.rb"
 
 RSpec.configure do |config|
