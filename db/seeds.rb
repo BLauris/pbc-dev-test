@@ -69,9 +69,6 @@ if Rails.env == "test" || Rails.env == "development"
   end
 
   custom_lg = LocationGroup.create(name: "Custom Location Group")
-  Location.joins(:country).where(countries: { country_code: "LV" }).first.update_attribute(:location_group_id, custom_lg.id)
-  Location.joins(:country).where(countries: { country_code: "US" }).first.update_attribute(:location_group_id, custom_lg.id)
-  Location.where(country_id: nil).first.update_attribute(:location_group_id, custom_lg.id)
 
   puts "----> Target Groups "
 

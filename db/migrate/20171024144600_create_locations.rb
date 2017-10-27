@@ -4,7 +4,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string :name, null: false, default: ""
       t.integer :external_id
       t.string :secret_code
-      t.integer :country_id, null: false
+      t.integer :country_id
       t.timestamps null: false
     end
     

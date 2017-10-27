@@ -37,13 +37,12 @@ ActiveRecord::Schema.define(version: 20171026202241) do
   add_index "location_groups", ["panel_provider_id"], name: "index_location_groups_on_panel_provider_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
-    t.string   "name",              default: "", null: false
+    t.string   "name",        default: "", null: false
     t.integer  "external_id"
     t.string   "secret_code"
     t.integer  "country_id"
-    t.integer  "location_group_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "locations", ["country_id"], name: "index_locations_on_country_id", using: :btree

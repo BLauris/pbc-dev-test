@@ -19,8 +19,6 @@ RSpec.describe LocationGroup, type: :model do
   it "doesn't save 'country' with missing details" do
     expect(location_group.save).to eq(false)
     expect(location_group.errors.messages[:name]).to include("can't be blank")
-    expect(location_group.errors.messages[:panel_provider_id]).to include("can't be blank")
-    expect(location_group.errors.messages[:country_id]).to include("can't be blank")
   end
   
 end
