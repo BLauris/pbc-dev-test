@@ -64,21 +64,21 @@ LocationGroup.create(name: Faker::Name.title)
 puts "----> Target Groups "
 
 def level_one_children(parent_id)
-  3.times do
+  2.times do
     tg = TargetGroup.create(name: Faker::Name.title, parent_id: parent_id)
     level_two_children(tg.id)
   end
 end
 
 def level_two_children(parent_id)
-  3.times do
+  2.times do
     tg = TargetGroup.create(name: Faker::Name.title, parent_id: parent_id)
     level_three_children(tg.id)
   end
 end
 
 def level_three_children(parent_id)
-  3.times do
+  2.times do
     TargetGroup.create(name: Faker::Name.title, parent_id: parent_id)
   end
 end
