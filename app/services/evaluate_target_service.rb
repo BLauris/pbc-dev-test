@@ -14,9 +14,9 @@ class EvaluateTargetService < Validators::TargetEvaluation
   
     def validate!
       errors = {}
-      errors[:country_code] = validate_country(country_code)
-      errors[:target_group_id] = validate_target_group(target_group_id)
-      errors[:locations] = validate_locations(locations)
+      errors[:country_code] = validate_country
+      errors[:target_group_id] = validate_target_group
+      errors[:locations] = validate_locations
       errors.select { |_, value| !value.nil? }.present? ? errors : {}
     end
 end
