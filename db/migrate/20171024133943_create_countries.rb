@@ -7,5 +7,6 @@ class CreateCountries < ActiveRecord::Migration
     end
     
     add_index :countries, :panel_provider_id
+    add_index :countries, :country_code, unique: true
   end
 end

@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20171026202241) do
     t.datetime "updated_at",                     null: false
   end
 
+  add_index "countries", ["country_code"], name: "index_countries_on_country_code", unique: true, using: :btree
   add_index "countries", ["panel_provider_id"], name: "index_countries_on_panel_provider_id", using: :btree
 
   create_table "location_groups", force: :cascade do |t|
