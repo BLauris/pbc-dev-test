@@ -53,7 +53,7 @@ if Rails.env == "test" || Rails.env == "development"
   united_states = Country.find_by(country_code: "US")
   US_CITIES.each{ |city| Location.create(name: city, country_id: united_states.id, secret_code: Faker::Code.isbn) }
   
-  FIVE_RANDOM.each{ |city| Location.create(name: city, country_id: united_states.id, secret_code: Faker::Code.isbn) }
+  FIVE_RANDOM.each{ |city| Location.create(name: city, secret_code: Faker::Code.isbn) }
 
   puts "----> Location Groups "
 
@@ -65,9 +65,13 @@ if Rails.env == "test" || Rails.env == "development"
       country_id: country.id,
       panel_provider_id: country.panel_provider.id
     )
+
   end
 
-  LocationGroup.create(name: Faker::Name.title)
+  custom_lg = LocationGroup.create(name: "Custom Location Group")
+  Location.joins(:country).where(countries: { country_code: "LV" }).first.update_attribute(:location_group_id, custom_lg.id)
+  Location.joins(:country).where(countries: { country_code: "US" }).first.update_attribute(:location_group_id, custom_lg.id)
+  Location.where(country_id: nil).first.update_attribute(:location_group_id, custom_lg.id)
 
   puts "----> Target Groups "
 
