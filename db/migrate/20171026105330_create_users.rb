@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      # TODO: add unique validation on email
       t.string :email, null: false, default: ""
       t.string :token
       t.datetime :token_expires_at

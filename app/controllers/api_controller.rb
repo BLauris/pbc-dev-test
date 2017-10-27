@@ -1,5 +1,7 @@
 class ApiController < ApplicationController
   
+  # NOTE: Usually I would add versioning for the API. And add something advanced for user auth.
+  
   protect_from_forgery with: :null_session
     
   helper_method :current_user
@@ -18,10 +20,6 @@ class ApiController < ApplicationController
       unless current_user.present?
         render json: {message: "You need to be authorized!"}, status: 401 
       end
-    end
-  
-    def token
-    
     end
     
     def current_user

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   
+  # TODO: add unique validation on email
   validates :email, presence: true
   
   has_many :user_panel_providers
