@@ -1,4 +1,5 @@
 class Api::TargetGroupsController < ApiController
+  include CountryConcern
   
   before_action :rate_limit_exceeded?
   

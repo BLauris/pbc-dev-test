@@ -1,4 +1,5 @@
 class Api::LocationsController < ApiController
+  include CountryConcern
   
   before_action :rate_limit_exceeded?
   

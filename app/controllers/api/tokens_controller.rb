@@ -1,8 +1,8 @@
 class Api::TokensController < ApiController
   
+  before_action :token
+  
   def generate
-    token = TokenService.generate_token!(user_params[:email])
-      
     if token.present?
       render json: { token: token }, status: 200
     else
@@ -16,4 +16,7 @@ class Api::TokensController < ApiController
       params.require(:user).permit(:email)
     end
   
+    def token
+      @token ||= TokenService.generate_token!(user_params[:email])
+    end
 end
